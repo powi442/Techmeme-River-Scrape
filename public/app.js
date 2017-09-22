@@ -9,7 +9,7 @@ $.getJSON("/articles", function(data) {
 
 
 // Whenever someone clicks on the scrape button
-$(document).on("click", "#scrape", function() {
+$(document).on("click", "#scraper", function() {
 
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
@@ -69,3 +69,11 @@ $(document).on("click", "#savenote", function() {
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
+$.getJSON("/notes", function(data) {
+  // For each one
+  for (var i = 0; i < data.length; i++) {
+    // Display the apropos information on the page
+    $("#notes").append("<p data-id='" + data[i]._id + "'>" + "<br />" + "Article Title: " + data[i].title + "<br />" + "Comment: " + data[i].body + "</p>");
+  }
+});
+
